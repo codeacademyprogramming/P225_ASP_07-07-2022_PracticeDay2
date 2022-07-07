@@ -1,0 +1,14 @@
+﻿@model List<ProductImage>
+
+@foreach (ProductImage productImage in Model)
+{
+<div>
+    @if (Model.Count > 1)
+    {
+        <a asp-area="manage" asp-controller="product" asp-action="DeleteImage" asp-route-id="@productImage.Id" class="close productimageremovebtn">
+            <span aria-hidden="true">&times;</span>
+        </a>
+    }
+    <img width="100" src="~/assets/images/product-quick/@productImage.Image" alt="Alternate Text" />
+</div>
+}

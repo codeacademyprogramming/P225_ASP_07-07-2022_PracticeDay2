@@ -1,0 +1,56 @@
+﻿@model Order
+<form id="checkoutform" method="post" asp-controller="order" asp-action="checkout">
+    <div class="billing-address mt-30">
+        <h4 class="allup-title">Billing Address</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="Name">First Name*</label>
+                    <input asp-for="Name" placeholder="First Name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="SurName">Last  Name*</label>
+                    <input asp-for="SurName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="Email">Email Address*</label>
+                    <input asp-for="Email" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="Phone">Phone no*</label>
+                    <input asp-for="Phone" placeholder="Phone no">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="single-form">
+                    <label for="Address">Address</label>
+                    <input asp-for="Address" placeholder="Address Line">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="Country">Country</label>
+                    <input asp-for="Country" placeholder="Address Line 1">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="City">City*</label>
+                    <input asp-for="City" placeholder="City">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label for="ZipCode">Zip Code*</label>
+                    <input asp-for="ZipCode" placeholder="Zip Code">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

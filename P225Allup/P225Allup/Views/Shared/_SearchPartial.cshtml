@@ -1,0 +1,9 @@
+﻿@model List<Product>
+
+@foreach (Product product in Model)
+{
+    <li class="list-group-item">
+        <img style="width:50px;" src="assets/images/product/@product.MainImage" alt="Alternate Text" />
+        @product.Title
+    </li>
+}

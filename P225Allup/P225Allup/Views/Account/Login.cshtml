@@ -1,0 +1,60 @@
+﻿@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Login</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== Login Part Start ======-->
+
+<section class="login-area pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="login-register-wrapper mt-30">
+                    <h4 class="allup-title">Login to Your Account</h4>
+                    <div class=" text text-danger" asp-validation-summary="ModelOnly"></div>
+                    <form method="post">
+                        <div class="single-form">
+                            <input asp-for="Email" placeholder="Email">
+                            <span class="text text-danger" asp-validation-for="Email"></span>
+                        </div>
+                        <div class="single-form">
+                            <input asp-for="Password" placeholder="Password">
+                            <span class="text text-danger" asp-validation-for="Password"></span>
+                        </div>
+                        <div class="custom-checkbox mt-30">
+                            <input asp-for="RemindMe">
+                            <label for="RemindMe"></label>
+                            <p>Remember me</p>
+                        </div>
+                        <div class="single-form">
+                            <button class="main-btn main-btn-2">Login</button>
+                        </div>
+                    </form>
+                    <p class="mt-20"><a href="#">Lost your password?</a></p>
+                    <p class="mt-10">No account? <a asp-controller="account" asp-action="register">Create one here.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Login Part Ends ======-->
+
+@section Script{
+
+    <partial name="_ValidationPartial">
+}

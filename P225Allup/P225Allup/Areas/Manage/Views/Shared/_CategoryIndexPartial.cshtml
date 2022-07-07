@@ -1,0 +1,20 @@
+﻿@model List<Category>
+@{
+    int no = 0;
+}
+
+@foreach (Category category in Model)
+{
+    no++;
+    <tr>
+        <td>@no</td>
+        <td>@category.Name</td>
+        <td>@category.Products?.Count()</td>
+        @*<td>@(brand.Products != null && brand.Products.Count() > 0 ? brand.Products.Count() : 0)</td>*@
+        <td class="text @(category.IsDeleted ? "text-danger":"text-success")">@(category.IsDeleted ? "DeActive":"Active")</td>
+        <td>
+            <a class="btn btn-warning " asp-area="manage" asp-controller="category" asp-action="update" asp-route-id="@category.Id">Update</a>
+            <a class="btn @(category.IsDeleted ? "btn-primary":"btn-danger") deleteandrestorebtn" asp-area="manage" asp-controller="category" asp-action="@(category.IsDeleted ? "restore":"delete")" asp-route-id="@category.Id" asp-route-status="@ViewBag.Status">@(category.IsDeleted ? "ReStore":"Delete")</a>
+        </td>
+    </tr>
+}

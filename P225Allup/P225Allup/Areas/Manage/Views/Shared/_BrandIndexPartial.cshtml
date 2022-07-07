@@ -1,0 +1,20 @@
+﻿@model List<Brand>
+@{
+    int no = 0;
+}
+
+@foreach (Brand brand in Model)
+{
+    no++;
+    <tr>
+        <td>@no</td>
+        <td>@brand.Name</td>
+        <td>@brand.Products?.Count()</td>
+        @*<td>@(brand.Products != null && brand.Products.Count() > 0 ? brand.Products.Count() : 0)</td>*@
+        <td class="text @(brand.IsDeleted ? "text-danger":"text-success")">@(brand.IsDeleted ? "DeActive":"Active")</td>
+        <td>
+            <a class="btn btn-warning " asp-area="manage" asp-controller="brand" asp-action="update" asp-route-id="@brand.Id" >Update</a>
+            <a class="btn @(brand.IsDeleted ? "btn-primary":"btn-danger") deleteandrestorebtn" asp-area="manage" asp-controller="brand" asp-action="@(brand.IsDeleted ? "restore":"delete")" asp-route-id="@brand.Id" asp-route-status="@ViewBag.Status">@(brand.IsDeleted ? "ReStore":"Delete")</a>
+        </td>
+    </tr>
+}

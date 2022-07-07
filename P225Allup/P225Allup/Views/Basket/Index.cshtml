@@ -1,0 +1,32 @@
+﻿@model List<BasketVM>
+@{
+    ViewData["Title"] = "Index";
+    double totlaTax = Model.Sum(b => b.ExTax * b.Count);
+    double totalPrice = Model.Sum(b => b.Price * b.Count);
+}
+
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Cart</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== Cart Part Start ======-->
+
+<section class="cart-page pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row basketcontainer">
+            @await Html.PartialAsync("_BasketIndexPartial",Model) 
+        </div>
+    </div>
+</section>
+
+<!--====== Cart Part Ends ======-->

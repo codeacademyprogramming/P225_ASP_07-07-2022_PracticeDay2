@@ -1,0 +1,105 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row justify-content-lg-between">
+    <div class="col-lg-2">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Create</h1>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input class="form-control" asp-for="Title">
+                <span class="text text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input class="form-control" asp-for="Price">
+                <span class="text text-danger" asp-validation-for="Price"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DiscountPrice" class="form-label"></label>
+                <input class="form-control" asp-for="DiscountPrice">
+                <span class="text text-danger" asp-validation-for="DiscountPrice"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Extax" class="form-label"></label>
+                <input class="form-control" asp-for="Extax">
+                <span class="text text-danger" asp-validation-for="Extax"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Count" class="form-label"></label>
+                <input class="form-control" asp-for="Count">
+                <span class="text text-danger" asp-validation-for="Count"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span class="text text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label for="CategoryId">Categories</label>
+                <select class="form-control" asp-for="CategoryId" asp-items="new SelectList(ViewBag.Categories,nameof(Category.Id), nameof(Category.Name))">
+                    <option>Select Category</option>
+                </select>
+                <span class="text text-danger" asp-validation-for="CategoryId"></span>
+            </div>
+            <div class="form-group">
+                <label for="BrandId">Brands</label>
+                <select class="form-control" asp-for="BrandId" asp-items="new SelectList(ViewBag.Brands,nameof(Brand.Id), nameof(Brand.Name))">
+                    <option>Select Brand</option>
+                </select>
+                <span class="text text-danger" asp-validation-for="BrandId"></span>
+            </div>
+            <div class="form-group">
+                <label for="BrandId">Tags</label>
+                <select class="form-control" asp-for="TagIds" asp-items="new SelectList(ViewBag.Tags,nameof(Tag.Id), nameof(Tag.Name))">
+                    <option>Select Tags</option>
+                </select>
+                <span class="text text-danger" asp-validation-for="BrandId"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsBestSeller" class="form-check-input">
+                <label asp-for="IsBestSeller" class="form-check-label"></label>
+                <span class="text text-danger" asp-validation-for="IsBestSeller"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsFeature" class="form-check-input">
+                <label asp-for="IsFeature" class="form-check-label"></label>
+                <span class="text text-danger" asp-validation-for="IsFeature"></span>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsNewArrivel" class="form-check-input">
+                <label asp-for="IsNewArrivel" class="form-check-label"></label>
+                <span class="text text-danger" asp-validation-for="IsNewArrivel"></span>
+            </div>
+            <div class="custom-file mb-3">
+                <input asp-for="MainFile" class="custom-file-input" required>
+                <label for="MainFile" class="custom-file-label">Choose Main file...</label>
+                <span class="text text-danger" asp-validation-for="MainFile"></span>
+            </div>
+            <div class="custom-file mb-3">
+                <input asp-for="SecondFile" class="custom-file-input" required>
+                <label for="SecondFile" class="custom-file-label">Choose Second file...</label>
+                <span class="text text-danger" asp-validation-for="SecondFile"></span>
+            </div>
+            <div class="custom-file mb-3">
+                <input asp-for="Files" class="custom-file-input" required>
+                <label for="Files" class="custom-file-label">Choose All files...</label>
+                <span class="text text-danger" asp-validation-for="Files"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-area="manage" asp-controller="product" asp-action="index" class="btn btn-primary">Go Back</a>
+        </form>
+    </div>
+</div>
+
+@section Script{
+
+    <partial name="_ValidationPartial">
+}

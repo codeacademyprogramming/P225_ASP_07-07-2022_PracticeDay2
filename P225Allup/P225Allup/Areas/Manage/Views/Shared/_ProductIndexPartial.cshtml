@@ -1,0 +1,18 @@
+﻿@model List<Product>
+@{
+    int no = 0;
+}
+
+@foreach (Product product in Model)
+{
+    no++;
+    <tr>
+        <td>@no</td>
+        <td>@product.Title</td>
+        <td class="text @(product.IsDeleted ? "text-danger":"text-success")">@(product.IsDeleted ? "DeActive":"Active")</td>
+        <td>
+            <a class="btn btn-warning " asp-area="manage" asp-controller="product" asp-action="update" asp-route-id="@product.Id">Update</a>
+            <a class="btn @(product.IsDeleted ? "btn-primary":"btn-danger") deleteandrestorebtn" asp-area="manage" asp-controller="product" asp-action="@(product.IsDeleted ? "restore":"delete")" asp-route-id="@product.Id" asp-route-status="@ViewBag.Status">@(product.IsDeleted ? "ReStore":"Delete")</a>
+        </td>
+    </tr>
+}

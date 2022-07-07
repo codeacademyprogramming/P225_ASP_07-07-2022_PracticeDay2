@@ -1,0 +1,104 @@
+﻿@model List<BasketVM>
+@{
+    double totlaTax = Model.Sum(b => b.ExTax * b.Count);
+    double totalPrice = Model.Sum(b => b.Price * b.Count);
+}
+
+<div class="col-xl-8">
+    <div class="shopping-cart mt-25">
+        <h4 class="allup-title">Shopping Cart</h4>
+        <div class="shopping-cart-table table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="image">Image</th>
+                        <th class="product">Product</th>
+                        <th class="price">Price</th>
+                        <th class="quantity">Quantity</th>
+                        <th class="total">Total</th>
+                        <th class="delete">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (BasketVM basketVm in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="product-image">
+                                    <img width="100px" src="assets/images/product/@basketVm.Image" alt="cart">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-title">
+                                    <h4 class="title"><a href="single-product.html">@basketVm.Title</a></h4>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-price">
+                                    <span class="price">€@basketVm.Price</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-quantity">
+                                    <div class="quantity mt-15 d-flex">
+                                        <a asp-controller="basket" asp-action="UpdateFromCart" asp-route-id="@basketVm.ProductId" class="subCount btn border"><i class="fal fa-minus"></i></a>
+                                        <input type="text" value="@basketVm.Count" />
+                                        <a asp-controller="basket" asp-action="UpdateFromCart" asp-route-id="@basketVm.ProductId" class="addCount btn border"><i class="fal fa-plus"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-total">
+                                    <span class="total-amount">€@((basketVm.Price * basketVm.Count).ToString("F2"))</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-delete">
+                                    <a class="deletefromcart" asp-controller="basket" asp-action="DeleteFromCart" asp-route-id="@basketVm.ProductId"><i class="fal fa-trash-alt "></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-xl-4">
+    <div class="row">
+        <div class="col-xl-12 col-md-6">
+            <div class="cart-coupon mt-30">
+                <h5 class="title">Discount Coupon Code</h5>
+                <form action="#">
+                    <div class="single-form coupon-form d-flex flex-wrap">
+                        <input type="text" placeholder="Coupon Code">
+                        <button class="main-btn">Apply Coupon</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-12 col-md-6">
+            <div class="cart-total mt-30">
+                <div class="sub-total">
+                    <div class="single-total">
+                        <span class="cart-value">Subtotal</span>
+                        <span class="cart-amount">€@(totalPrice.ToString("F2"))</span>
+                    </div>
+                </div>
+                <div class="total">
+                    <div class="single-total">
+                        <span class="cart-value">Total (tax excl.)</span>
+                        <span class="cart-amount">€@((totalPrice+totlaTax).ToString("F2"))</span>
+                    </div>
+                    <div class="single-total">
+                        <span class="cart-value">Taxes</span>
+                        <span class="cart-amount">€@(totlaTax.ToString("F2"))</span>
+                    </div>
+                </div>
+                <div class="cart-total-btn text-right">
+                    <a class="main-btn" asp-controller="order" asp-action="index">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

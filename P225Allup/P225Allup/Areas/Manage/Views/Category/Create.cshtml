@@ -1,0 +1,51 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+    SelectList selectListItems = new SelectList(ViewBag.MainCategoris, nameof(Category.Id), "Name");
+}
+
+<div class="row justify-content-lg-between">
+    <div class="col-lg-2">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Create</h1>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-check">
+                <input asp-for="IsMain" class="form-check-input">
+                <label class="form-check-label" asp-for="IsMain"></label>
+                <span class="text text-danger" asp-validation-for="IsMain"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input class="form-control" asp-for="Name">
+                <span class="text text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3 imageInput">
+                <label asp-for="File" class="form-label"></label>
+                <input class="form-control" accept="image/jpeg" asp-for="File">
+                <span class="text text-danger" asp-validation-for="File"></span>
+            </div>
+            <div class="form-group parentInput">
+                <label asp-for="ParentId"></label>
+                <select asp-for="ParentId" class="form-control" asp-items="@selectListItems">
+                </select>
+                <span class="text text-danger" asp-validation-for="ParentId"></span>
+                @*<select asp-for="ParentId" class="form-control">
+            @foreach (Category category in ViewBag.MainCategoris)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>*@
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-area="manage" asp-controller="category" asp-action="index" class="btn btn-primary">Go Back</a>
+        </form>
+    </div>
+</div>
+
+@section Script{
+    <partial name="_ValidationPartial">
+}

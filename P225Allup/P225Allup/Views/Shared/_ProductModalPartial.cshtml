@@ -1,0 +1,82 @@
+﻿@model Product
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="product-quick-view-image mt-30">
+                <div class="quick-view-image">
+                    @foreach (ProductImage productImage in Model.ProductImages)
+                    {
+                        <div class="single-view-image">
+                            <img src="assets/images/product-quick/@productImage.Image" alt="product">
+                        </div>
+                    }
+                </div>
+                <ul class="quick-view-thumb">
+                    @foreach (ProductImage productImage in Model.ProductImages)
+                    {
+                        <li>
+                            <div class="single-thumb">
+                                <img src="~/assets/images/product-quick/@productImage.Image" alt="">
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div> <!-- Modal Quick View Image -->
+        </div>
+        <div class="col-md-6">
+            <div class="product-quick-view-content mt-30">
+                <h3 class="product-title">@Model.Title</h3>
+                <p class="reference">Reference: demo_12</p>
+                <ul class="rating">
+                    <li class="rating-on"><i class="fas fa-star"></i></li>
+                    <li class="rating-on"><i class="fas fa-star"></i></li>
+                    <li class="rating-on"><i class="fas fa-star"></i></li>
+                    <li class="rating-on"><i class="fas fa-star"></i></li>
+                    <li class="rating-on"><i class="fas fa-star"></i></li>
+                </ul>
+                <div class="product-prices">
+                    @if (Model.DiscountPrice > 0)
+                    {
+                        <span class="sale-price"> €@Model.Price.ToString("F2")</span>
+                        <span class="regular-price">€@Model.DiscountPrice.ToString("F2")</span>
+                        <span class="save">Save @((100-((Model.DiscountPrice * 100) / Model.Price)).ToString("F2"))%</span>
+                    }
+                    else
+                    {
+                        <span class="regular-price">€@Model.Price.ToString("F2")</span>
+                    }
+                </div>
+                <p class="product-description" ><div style="height:100px;overflow:scroll;">
+    @Html.Raw(Model.Description)
+</div></p>
+                <div class="product-size-color flex-wrap">
+                    <div class="product-quantity">
+                        <h5 class="title">Quantity</h5>
+                        <div class="quantity d-flex">
+                            <button type="button" id="sub" class="sub"><i class="fal fa-minus"></i></button>
+                            <input type="text" value="1" />
+                            <button type="button" id="add" class="add"><i class="fal fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-add-cart">
+                    <button><i class="icon ion-bag"></i> Add to cart</button>
+                </div>
+                <div class="product-wishlist-compare">
+                    <ul class="d-flex flex-wrap">
+                        <li><a href="#"><i class="fal fa-heart"></i> Add to wishlist</a></li>
+                        <li><a href="#"><i class="fal fa-repeat"></i> Add to compare</a></li>
+                    </ul>
+                </div>
+                <div class="product-share d-flex">
+                    <p>Share</p>
+                    <ul class="social media-body">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+            </div> <!-- Modal Quick View Content -->
+        </div>
+    </div> <!-- row -->
